@@ -1,3 +1,51 @@
-body{
+/* RESET  */
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* HEADER  */
+header{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.level{
+    margin:0 1rem;
+}
+
+#start{
+    margin-right:2rem;
+}
+
+
+/* MAIN  */
+main{
+    height: calc(100vh - 100px);
+    width: 100%;
     background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-container{
+    width: 500px;
+    height: 500px;
+    border: 1px solid black ;
+    display: flex;
+    align-content:flex-start;
+    flex-wrap: wrap;
+}
+
+.grid-items{
+    border: 1px solid black;
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    display: flex;
+    justify-content: center;
+    align-items:center;
 }
