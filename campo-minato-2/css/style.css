@@ -41,11 +41,19 @@ main{
     flex-wrap: wrap;
 }
 
-.grid-items{
+.grid-item{
     border: 1px solid black;
     width: calc(100% / 10);
     height: calc(100% / 10);
     display: flex;
     justify-content: center;
     align-items:center;
+}
+
+.click {
+    background-color: aquamarine;
+}
+
+.bomb {
+    background-color: red;
 }

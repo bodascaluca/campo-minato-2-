@@ -25,29 +25,63 @@
 //-1 Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
     //I numeri nella lista delle bombe non possono essere duplicati.
 
-const start = document.getElementById("start").addEventListener(`click`,startGame())
+let points = 0;
+const orderNumbers = theNumbers(1, 100);
+const bombs = theBombs(1, 100, 16);
+const gridContainer = document.querySelector('.grid-container');
+const start = document.querySelector('#start').addEventListener('click', function() {
+    startGame();
+});
 
-function startGame(){
+console.log(bombs);
 
-    //-1 Generare 1oo numeri
-    const orderNumbers = theNumbers(1, 100);
-    console.log(orderNumbers);
-
-    for(let i = 0; i < 100; i++ ){
-
-        const card = document.createElement("div");
-        card.classList.add("grid-item");
-        card.innerHTML = `<span>${orderNumbers}<span>`
-        card.append("grid-container");
-        console.log(card);
-    }
-
+function startGame() {
+    // 2. Genero le card 
+    generateCards(orderNumbers);
 }
 
-function theNumbers(min, max){
+//Generare 100 numeri
+function theBombs(min, max, limit) {
+
     let numbers = [];
-    for (let i = 1 ; i <= 100; i++){
-        numbers =[i]; 
+    for (let i = 1 ; i <= limit; i++) {
+        const random = Math.floor(Math.random() * (max - min + 1) ) + min;
+        numbers.push(random); 
     }
+
     return numbers;
 }
+
+function theNumbers(min, max) {
+
+    let numbers = [];
+    for (let i = 1 ; i <= 100; i++) {
+        numbers.push(i); 
+    }
+
+    return numbers;
+}
+
+//Generare 100 numeri
+function generateCards(quantityCards) {
+    for (let i = 0; i < quantityCards.length; i++ ) {
+        let card = document.createElement("div");
+        card.classList.add("grid-item");
+        card.innerHTML = `<span>${quantityCards[i]}<span>`;
+
+        card.addEventListener('click', function() {
+            console.log(i);
+            let index = i + 1;
+            if (bombs.includes(index)) {
+                card.classList.add('bomb');
+                alert('Hai perso, punteggio di ' + points);
+            } else {
+                card.classList.add('click');
+                points++;
+            }
+        });
+
+        gridContainer.append(card);
+    }
+}
+
